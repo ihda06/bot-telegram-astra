@@ -1,21 +1,21 @@
-const { default: Telegraf } = require("telegraf");
-const { logsRequest } = require("./middleware/logs");
-const session = require("telegraf/session");
-const { stage } = require("./stages");
-require("dotenv").config();
-const express = require("express");
+// const { default: Telegraf } = require("telegraf");
+// const { logsRequest } = require("./middleware/logs");
+// const session = require("telegraf/session");
+// const { stage } = require("./stages");
+// require("dotenv").config();
+// const express = require("express");
 
-const bot = new Telegraf(process.env.API_TOKEN);
-console.log("NODE ENV", process.env.NODE_ENV);
-console.log("ini production");
-const app = express();
-app.use(express.json());
-app.use(webhookCallback(bot, "express"));
+// const bot = new Telegraf(process.env.API_TOKEN);
+// // console.log("NODE ENV", process.env.NODE_ENV);
+// // console.log("ini production");
+// // const app = express();
+// // app.use(express.json());
+// // app.use(webhookCallback(bot, "express"));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Bot listening on port ${PORT}`);
-});
+// // const PORT = process.env.PORT || 3000;
+// // app.listen(PORT, () => {
+// //   console.log(`Bot listening on port ${PORT}`);
+// // });
 
 // bot.use(logsRequest);
 // bot.use(session());
@@ -40,3 +40,19 @@ app.listen(PORT, () => {
 //     ctx.scene.enter("welcome");
 //   });
 // }
+
+const { Telegraf } = require('telegraf')
+const express = require('express')
+const expressApp = express()
+
+const bot = new Telegraf(process.env.API_TOKEN)
+expressApp.use(bot.webhookCallback('/'))
+bot.telegram.setWebhook('https://vast-jade-angelfish-hat.cyclic.cloud')
+
+expressApp.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+expressApp.listen(3000, () => {
+  console.log('Example app listening on port 3000!')
+})
