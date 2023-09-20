@@ -41,18 +41,21 @@
 //   });
 // }
 
-const { Telegraf } = require('telegraf')
-const express = require('express')
-const expressApp = express()
+const { Telegraf } = require("telegraf");
+const express = require("express");
+const expressApp = express();
 
-const bot = new Telegraf(process.env.API_TOKEN)
-expressApp.use(bot.webhookCallback('/'))
-bot.telegram.setWebhook('https://vast-jade-angelfish-hat.cyclic.cloud')
+const bot = new Telegraf(process.env.API_TOKEN);
 
-expressApp.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+bot.on("message", (ctx) => ctx.reply("Got another message!"));
+expressApp.use(bot.webhookCallback("/"));
+bot.telegram.setWebhook("https://vast-jade-angelfish-hat.cyclic.cloud");
+
+expressApp.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 expressApp.listen(3000, () => {
-  console.log('Example app listening on port 3000!')
-})
+  console.log("Example app listening on port 3000!");
+});
