@@ -7,13 +7,14 @@ const express = require('express')
 
 
 const bot = new Telegraf(process.env.API_TOKEN)
+console.log("NODE ENV",process.env.NODE_ENV);
 
-bot.use(logsRequest);
-bot.use(session());
-bot.use(stage.middleware());
+// bot.use(logsRequest);
+// bot.use(session());
+// bot.use(stage.middleware());
 
-// bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-bot.on("message", (ctx) => ctx.reply("Got another message!"));
+// // bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+// bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 
 // const { Telegraf } = require('telegraf')
