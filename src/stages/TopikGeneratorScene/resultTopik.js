@@ -4,12 +4,14 @@ const topik = "abcdfg";
 const closing = `Jika kamu punya saran topik yang menarik untuk dibahas ketik /tambahtopik untuk menambahkan topik baru jika tidak ketik /menu untuk kembali ke menu`;
 
 const ResultTopik = new Scene("ResultTopik");
-ResultTopik.enter(async (ctx) => {
-  await ctx.reply(
+ResultTopik.enter(async(ctx) => {
+  ctx.reply(
     "Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu"
   );
-  await ctx.reply(topik);
-  await ctx.reply(closing);
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  ctx.reply(topik);
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  ctx.reply(closing);
 });
 ResultTopik.command("tambahtopik", (ctx) => {
   ctx.scene.enter("tambahtopik");
