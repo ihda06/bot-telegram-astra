@@ -8,9 +8,9 @@ ResultTopik.enter(async(ctx) => {
   ctx.reply(
     "Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu"
   );
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  // await new Promise(resolve => setTimeout(resolve, 1000));
   ctx.reply(topik);
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  // await new Promise(resolve => setTimeout(resolve, 1000));
   ctx.reply(closing);
 });
 ResultTopik.command("tambahtopik", (ctx) => {
