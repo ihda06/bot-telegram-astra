@@ -29,8 +29,10 @@ bot.start((ctx) => {
 });
 
 // bot.on("text", (ctx) => ctx.reply("Hello World"));
-bot.launch();
+bot.launch().then(() => {
+  console.log('Bot is running!');
+});;
 
-expressApp.listen(3000, () => {
-  console.log('Example app listening on port 3000!')
+expressApp.listen(80, () => {
+  console.log('Example app listening on port 80!')
 })
