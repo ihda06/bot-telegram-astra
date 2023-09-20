@@ -33,6 +33,6 @@ bot.launch().then(() => {
   console.log('Bot is running!');
 });;
 
-expressApp.listen(80, () => {
+expressApp.listen(3000, () => {
   console.log('Example app listening on port 80!')
 })
