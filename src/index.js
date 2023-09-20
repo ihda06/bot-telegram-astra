@@ -7,8 +7,6 @@ const express = require('express')
 
 
 const bot = new Telegraf(process.env.API_TOKEN)
-console.log("check api token", process.env.API_TOKEN);
-
 
 bot.use(logsRequest);
 bot.use(session());
@@ -31,15 +29,17 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 // });;
 
 if (process.env.NODE_ENV === "production") {
+  console.log("ini production");
   const app = express();
   app.use(express.json());
   app.use(webhookCallback(bot, "express"));
-
+  
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`Bot listening on port ${PORT}`);
   });
 } else {
+  console.log("ini dev");
   bot.start((ctx) => {
     ctx.scene.enter("welcome");
   });
