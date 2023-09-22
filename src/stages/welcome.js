@@ -18,12 +18,6 @@ welcome.enter((ctx) => {
     },
   });
 });
-welcome.command("TopikGenerator", (ctx) => {
-  ctx.scene.enter("ResultTopik");
-});
-welcome.action("TopikGenerator", (ctx) => {
-  ctx.scene.enter("ResultTopik");
-});
 
 welcome.command("tes", async (ctx) => {
   try {
@@ -49,6 +43,12 @@ welcome.command("tes", async (ctx) => {
     console.log(error);
     ctx.reply("error");
   }
+});
+welcome.command("TopikGenerator", (ctx) => {
+  ctx.scene.enter("ResultTopik");
+});
+welcome.action("TopikGenerator", (ctx) => {
+  ctx.scene.enter("ResultTopik");
 });
 
 module.exports = {
