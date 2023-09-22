@@ -12,23 +12,22 @@ tambahTopik.enter((ctx) => {
     },
   });
 });
-tambahTopik.on("message", async (ctx) => {
-  try {
-    const text = ctx.message.text
-    await Airtables("TopikGenerator").create([
-      {
-        fields: {
-          "Topik": text,
-        },
+tambahTopik.on("message", (ctx) => {
+  const text = ctx.message.text;
+  Airtables("TopikGenerator").create([
+    {
+      fields: {
+        Topik: text,
       },
-    ]);
-    ctx.reply("Topik berhasil ditambahkan");
-    ctx.scene.enter("postUse");
-  } catch(e) {
-    console.error(e)
-    ctx.reply("Topik gagal ditambahkan");
-    ctx.scene.enter("welcome");
-  }
+    },
+  ]);
+  ctx.reply("Topik berhasil ditambahkan");
+  ctx.scene.enter("postUse");
+  // } catch(e) {
+  //   console.error(e)
+  //   ctx.reply("Topik gagal ditambahkan");
+  //   ctx.scene.enter("welcome");
+  // }
 });
 
 tambahTopik.action("cancel", (ctx) => {
