@@ -31,6 +31,6 @@ tambahTopik.on("message", async (ctx) => {
 });
 
 tambahTopik.action("cancel", (ctx) => {
-  ctx.scene.enter("postUse");
+  ctx.scene.enter("welcome");
 });
 module.exports = { tambahTopik };
