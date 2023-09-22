@@ -22,8 +22,8 @@ tambahTopik.on("message", async (ctx) => {
         },
       },
     ]);
-    ctx.reply("Topik berhasil ditambahkan");
-    ctx.scene.enter("postUse");
+    await ctx.reply("Topik berhasil ditambahkan");
+    ctx.scene.enter("welcome");
   } catch(e) {
     console.error(e)
     ctx.reply("Topik gagal ditambahkan");
