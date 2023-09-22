@@ -1,15 +1,10 @@
 const { logsRequest } = require("./middleware/logs");
 const session = require("telegraf/session");
 const { stage } = require("./stages");
-
 const { Telegraf } = require("telegraf");
 const express = require("express");
-
-
 require("dotenv").config();
-
 const expressApp = express();
-
 
 
 const bot = new Telegraf(
@@ -29,8 +24,6 @@ bot.start(async(ctx) => {
   }
 });
 
-
-// bot.telegram.webhookReply = false
 bot.on("message", (ctx) => ctx.reply("Tolong isi sesuai format ya"));
 if (process.env.PRODUCTION === "TRUE") {
   expressApp.use(bot.webhookCallback("/"));
