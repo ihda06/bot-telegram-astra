@@ -22,7 +22,7 @@ const TopikGenerator = async (ctx) => {
             /* One button */
             [{ text: "Tambah Topik", callback_data: "TambahTopik" }],
             [{ text: "Menu", callback_data: "menu" }],
-            [{ text: "Topik Lain", callback_data: "TopikGenerator" }],
+            [{ text: "Topik Lain", callback_data: "topiklain" }],
           ],
         },
       }

@@ -1,4 +1,5 @@
 const Scene = require("telegraf/scenes/base");
+const { TopikGenerator } = require("../../command/topikGenerator");
 const ResultTopik = new Scene("ResultTopik");
 
 ResultTopik.command("cancel", (ctx)=>{
@@ -14,13 +15,14 @@ ResultTopik.command("menu", (ctx) => {
 ResultTopik.command("TopikGenerator", (ctx) => {
   ctx.scene.enter("ResultTopik");
 });
-ResultTopik.action("TambahTopik", (ctx) => {
+ResultTopik.action("TambahTopik", async(ctx) => {
   ctx.scene.enter("tambahtopik");
 });
 ResultTopik.action("menu", (ctx) => {
   ctx.scene.enter("welcome");
 });
-ResultTopik.action("TopikGenerator", (ctx) => {
+ResultTopik.action("topiklain", async(ctx) => {
+  await TopikGenerator(ctx)
   ctx.scene.enter("ResultTopik");
 });
 
