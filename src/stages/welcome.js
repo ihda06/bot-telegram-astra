@@ -2,11 +2,7 @@ const Scene = require("telegraf/scenes/base");
 const { greeting } = require("../commons/constants/commonReplies");
 const Airtables = require("../utils/Airtable");
 const transformData = require("../utils/TransformData");
-
-const randomizer = (data) => {
-  const randomNumber = Math.floor(Math.random() * data.length);
-  return data[randomNumber];
-};
+const { TopikGenerator } = require("../command/topikGenerator");
 
 const welcome = new Scene("welcome");
 welcome.enter((ctx) => {
@@ -20,11 +16,10 @@ welcome.enter((ctx) => {
   });
 });
 
-
-welcome.command("cancel", (ctx)=>{
-  ctx.scene.leave()
-  ctx.reply("leaving")
-})
+welcome.command("cancel", (ctx) => {
+  ctx.scene.leave();
+  ctx.reply("leaving");
+});
 
 welcome.command("tes", async (ctx) => {
   try {
@@ -51,12 +46,13 @@ welcome.command("tes", async (ctx) => {
     ctx.reply("error");
   }
 });
-welcome.command("TopikGenerator", async(ctx) => {
+welcome.action("TopikGenerator", async (ctx) => {
+  await TopikGenerator(ctx)
   ctx.scene.enter("ResultTopik");
 });
-welcome.action("TopikGenerator", async(ctx) => {
-  ctx.scene.enter("ResultTopik");
-});
+// welcome.action("TopikGenerator", async (ctx) => {
+//   ctx.scene.enter("ResultTopik");
+// });
 
 module.exports = {
   welcome,
