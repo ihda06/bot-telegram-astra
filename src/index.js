@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const expressApp = express();
 
-const bot = new Telegraf(process.env.API_TOKEN_DEV);
+const bot = new Telegraf(process.env.API_TOKEN);
 
 bot.use(logsRequest);
 bot.use(session());
