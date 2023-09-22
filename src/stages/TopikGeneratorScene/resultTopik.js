@@ -11,11 +11,11 @@ const randomizer = (data) => {
   return data[randomNumber];
 };
 
-ResultTopik.enter((ctx) => {
+ResultTopik.enter(async (ctx) => {
   ctx.reply(
     "Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu"
   );
-  let rawdata = Airtables("TopikGenerator").select().all();
+  let rawdata = await Airtables("TopikGenerator").select().all();
   rawdata = transformData(rawdata);
   const topik = randomizer(rawdata);
   ctx.reply(topik.Topik, {
