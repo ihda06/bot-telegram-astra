@@ -14,11 +14,8 @@ const TopikGenerator = async (ctx) => {
     console.log("message dapet");
     rawdata = transformData(rawdata);
     const topik = randomizer(rawdata);
-    await ctx.reply(
-      `Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu`
-    );
     ctx.reply(
-      `💭\n\n${topik.Topik}`,
+      `Silahkan... \n \n💭\n \n${topik.Topik}`,
       {
         reply_markup: {
           inline_keyboard: [
