@@ -15,7 +15,7 @@ const TopikGenerator = async (ctx) => {
     rawdata = transformData(rawdata);
     const topik = randomizer(rawdata);
     ctx.reply(
-      `Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu\n \n${topik.Topik}`
+      `Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu`
     );
     ctx.reply(
       `💭\n\n${topik.Topik}`,
