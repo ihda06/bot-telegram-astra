@@ -8,15 +8,15 @@ const randomizer = (data) => {
 };
 
 const TopikGenerator = async (ctx) => {
+  ctx.reply(
+    `Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu`
+  );
   try {
     console.log("getting message..");
     let rawdata = await Airtables("TopikGenerator").select().all();
     console.log("message dapet");
     rawdata = transformData(rawdata);
     const topik = randomizer(rawdata);
-    ctx.reply(
-      `Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu`
-    );
     ctx.reply(
       `💭\n\n${topik.Topik}`,
       {
