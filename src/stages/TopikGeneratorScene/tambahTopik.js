@@ -22,13 +22,12 @@ tambahTopik.on("message", async (ctx) => {
         },
       },
     ]);
-    await ctx.reply("Topik berhasil ditambahkan");
-    ctx.scene.enter("welcome");
+    ctx.reply("Topik berhasil ditambahkan");
   } catch(e) {
     console.error(e)
     ctx.reply("Topik gagal ditambahkan");
-    ctx.scene.enter("welcome");
   }
+  ctx.scene.enter("welcome");
 });
 
 tambahTopik.action("cancel", (ctx) => {
