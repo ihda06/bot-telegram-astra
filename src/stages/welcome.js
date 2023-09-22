@@ -1,7 +1,8 @@
 const Scene = require("telegraf/scenes/base");
 const { greeting } = require("../commons/constants/commonReplies");
-const Airtables = require("./utils/Airtable");
-const transformData = require("./utils/TransformData");
+const Airtables = require("../utils/Airtable");
+const transformData = require("../utils/TransformData");
+
 const randomizer = (data) => {
   const randomNumber = Math.floor(Math.random() * data.length);
   return data[randomNumber];
