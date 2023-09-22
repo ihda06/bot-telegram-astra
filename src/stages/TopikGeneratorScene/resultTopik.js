@@ -19,23 +19,22 @@ ResultTopik.enter(async (ctx) => {
     rawdata = transformData(rawdata);
     const topik = randomizer(rawdata);
     ctx.reply(
-      "Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu"
+      `Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu\n \n${topik.Topik}`,
+      {
+        reply_markup: {
+          inline_keyboard: [
+            /* One button */
+            [{ text: "Tambah Topik", callback_data: "TambahTopik" }],
+            [{ text: "Menu", callback_data: "menu" }],
+            [{ text: "Topik Lain", callback_data: "TopikGenerator" }],
+          ],
+        },
+      }
     );
-    ctx.reply(topik.Topik, {
-      reply_markup: {
-        inline_keyboard: [
-          /* One button */
-          [{ text: "Tambah Topik", callback_data: "TambahTopik" }],
-          [{ text: "Menu", callback_data: "menu" }],
-          [{ text: "Topik Lain", callback_data: "TopikGenerator" }],
-        ],
-      },
-    });
   } catch (error) {
     console.log(error);
-    ctx.reply("error")
+    ctx.reply("error");
   }
-  
 });
 ResultTopik.command("tambahtopik", (ctx) => {
   ctx.scene.enter("tambahtopik");
