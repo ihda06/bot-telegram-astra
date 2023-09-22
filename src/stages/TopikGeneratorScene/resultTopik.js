@@ -12,22 +12,30 @@ const randomizer = (data) => {
 };
 
 ResultTopik.enter(async (ctx) => {
-  ctx.reply(
-    "Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu"
-  );
-  let rawdata = await Airtables("TopikGenerator").select().all();
-  rawdata = transformData(rawdata);
-  const topik = randomizer(rawdata);
-  ctx.reply(topik.Topik, {
-    reply_markup: {
-      inline_keyboard: [
-        /* One button */
-        [{ text: "Tambah Topik", callback_data: "TambahTopik" }],
-        [{ text: "Menu", callback_data: "menu" }],
-        [{ text: "Topik Lain", callback_data: "TopikGenerator" }],
-      ],
-    },
-  });
+  try {
+    console.log("getting message..");
+    let rawdata = await Airtables("TopikGenerator").select().all();
+    console.log("message dapet");
+    rawdata = transformData(rawdata);
+    const topik = randomizer(rawdata);
+    ctx.reply(
+      "Berikut topik pembicaraan yang mungkin cocok untuk kamu bahas dengan teman atau pasangan kamu"
+    );
+    ctx.reply(topik.Topik, {
+      reply_markup: {
+        inline_keyboard: [
+          /* One button */
+          [{ text: "Tambah Topik", callback_data: "TambahTopik" }],
+          [{ text: "Menu", callback_data: "menu" }],
+          [{ text: "Topik Lain", callback_data: "TopikGenerator" }],
+        ],
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    ctx.reply("error")
+  }
+  
 });
 ResultTopik.command("tambahtopik", (ctx) => {
   ctx.scene.enter("tambahtopik");
@@ -42,7 +50,7 @@ ResultTopik.action("TambahTopik", (ctx) => {
   ctx.scene.enter("tambahtopik");
 });
 ResultTopik.action("menu", (ctx) => {
-  ctx.scene.enter("postUse");
+  ctx.scene.enter("welcome");
 });
 ResultTopik.action("TopikGenerator", (ctx) => {
   ctx.scene.enter("ResultTopik");

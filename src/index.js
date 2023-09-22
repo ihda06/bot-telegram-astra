@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const expressApp = express();
 
-const bot = new Telegraf(process.env.API_TOKEN);
+const bot = new Telegraf(process.env.PRODUCTION === "TRUE" ? process.env.API_TOKEN : process.env.API_TOKEN_DEV);
 
 bot.use(logsRequest);
 bot.use(session());
@@ -17,9 +17,11 @@ bot.use(stage.middleware());
 // Register middleware
 bot.start((ctx) => {
   ctx.scene.enter("welcome");
-  ctx.session = { userInfo: ctx.message.from };
+  if(ctx.message){
+    ctx.session.state = { userInfo: ctx.message.from };
+  }
 });
-
+bot.telegram.webhookReply = false
 bot.on("message", (ctx) => ctx.reply("Tolong isi sesuai format ya"));
 if (process.env.PRODUCTION === "TRUE") {
   expressApp.use(bot.webhookCallback("/"));
