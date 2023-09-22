@@ -4,17 +4,12 @@ const { stage } = require("./stages");
 
 const { Telegraf } = require("telegraf");
 const express = require("express");
-const Airtables = require("./utils/Airtable");
-const transformData = require("./utils/TransformData");
 
 require("dotenv").config();
 
 const expressApp = express();
 
-const randomizer = (data) => {
-  const randomNumber = Math.floor(Math.random() * data.length);
-  return data[randomNumber];
-};
+
 
 const bot = new Telegraf(
   process.env.PRODUCTION === "TRUE"
