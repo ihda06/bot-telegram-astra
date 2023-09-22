@@ -5,6 +5,7 @@ const { stage } = require("./stages");
 const { Telegraf } = require("telegraf");
 const express = require("express");
 
+
 require("dotenv").config();
 
 const expressApp = express();
@@ -27,6 +28,7 @@ bot.start(async(ctx) => {
     ctx.session.state = { userInfo: ctx.message.from };
   }
 });
+
 
 // bot.telegram.webhookReply = false
 bot.on("message", (ctx) => ctx.reply("Tolong isi sesuai format ya"));

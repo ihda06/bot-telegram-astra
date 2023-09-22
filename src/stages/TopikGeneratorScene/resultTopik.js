@@ -35,8 +35,11 @@ ResultTopik.enter(async (ctx) => {
     console.log(error);
     ctx.reply("error")
   }
-  
 });
+ResultTopik.command("cancel", (ctx)=>{
+  ctx.scene.leave()
+  ctx.reply("leaving")
+})
 ResultTopik.command("tambahtopik", (ctx) => {
   ctx.scene.enter("tambahtopik");
 });

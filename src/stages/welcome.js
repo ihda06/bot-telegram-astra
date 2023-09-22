@@ -20,6 +20,12 @@ welcome.enter((ctx) => {
   });
 });
 
+
+welcome.command("cancel", (ctx)=>{
+  ctx.scene.leave()
+  ctx.reply("leaving")
+})
+
 welcome.command("tes", async (ctx) => {
   try {
     console.log("getting message..");
