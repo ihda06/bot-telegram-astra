@@ -51,10 +51,10 @@ welcome.command("tes", async (ctx) => {
     ctx.reply("error");
   }
 });
-welcome.command("TopikGenerator", (ctx) => {
+welcome.command("TopikGenerator", async(ctx) => {
   ctx.scene.enter("ResultTopik");
 });
-welcome.action("TopikGenerator", (ctx) => {
+welcome.action("TopikGenerator", async(ctx) => {
   ctx.scene.enter("ResultTopik");
 });
 
