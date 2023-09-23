@@ -15,12 +15,12 @@ TwitterScene.enter((ctx) => {
 });
 TwitterScene.action("mulai", async (ctx) => {
   try {
+    await ctx.reply("Verifikasi data....");
     const usnTele = ctx.session.state.userInfo.username;
     console.log("fetching ...");
     const data = await Airtables("databaseTwitter")
       .select({ filterByFormula: `username_tele = "${usnTele}"` })
       .all();
-    await ctx.reply("Verifikasi data....");
     console.log("fetching success");
     if (data.length === 0) {
       await ctx.reply(
