@@ -26,10 +26,8 @@ welcome.action("TopikGenerator", async (ctx) => {
   ctx.scene.enter("ResultTopik");
 });
 welcome.action("twitterBot", async (ctx) => {
-  const result = await TwitterBot(ctx);
-  if(!!result){
-    ctx.scene.enter(result)
-  }
+  ctx.scene.enter("TwitterBot")
+  // await TwitterBot(ctx);
 });
 welcome.action("register/yes", (ctx) => {
   ctx.scene.enter("twitter/registerScene");

@@ -23,15 +23,14 @@ const TwitterBot = async (ctx) => {
           },
         }
       );
-      return false
     } else {
       if (data[0].fields.verified) {
-        return "SendScene"
+        ctx.scene.enter("SendScene")
       } else {
         ctx.reply(
           "Data anda belum diverifikasi, tunggu admin melakukan verifikasi"
         );
-        return "welcome"
+        ctx.scene.enter("welcome")
       }
     }
   } catch (error) {
