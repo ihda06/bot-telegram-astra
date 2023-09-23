@@ -22,6 +22,10 @@ stage.register(
   SendScene
 );
 
+stage.command("reset", (ctx) => {
+  ctx.scene.enter("welcome");
+});
+
 module.exports = {
   stage,
 };

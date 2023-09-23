@@ -26,8 +26,9 @@ bot.start(async (ctx) => {
 });
 
 bot.on("message", async(ctx) => {
-  ctx.reply("Tolong isi sesuai format ya");
+  ctx.reply("Ketik /start untuk memulai bot");
 });
+
 if (process.env.PRODUCTION === "TRUE") {
   expressApp.use(bot.webhookCallback("/"));
   bot.telegram.setWebhook("https://vast-jade-angelfish-hat.cyclic.cloud");

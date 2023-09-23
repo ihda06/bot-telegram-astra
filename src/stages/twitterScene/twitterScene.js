@@ -1,5 +1,4 @@
 const Scene = require("telegraf/scenes/base");
-const Airtables = require("../../utils/Airtable");
 const TwitterScene = new Scene("TwitterBot");
 
 TwitterScene.action("register/yes", (ctx) => {
