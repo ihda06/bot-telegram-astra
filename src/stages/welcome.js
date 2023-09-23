@@ -25,7 +25,7 @@ welcome.action("TopikGenerator", async (ctx) => {
   await TopikGenerator(ctx);
   ctx.scene.enter("ResultTopik");
 });
-welcome.action("twitterBot", async (ctx) => {
+welcome.action("twitterBot", (ctx) => {
   ctx.scene.enter("TwitterBot")
   // await TwitterBot(ctx);
 });

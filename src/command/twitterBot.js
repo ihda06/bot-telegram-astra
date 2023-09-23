@@ -40,7 +40,7 @@ const TwitterBot = async (ctx) => {
 
 const registerTelegram = async (ctx) => {
   try {
-    ctx.editMessageText("Menyimpan data telegram ...");
+    await ctx.editMessageText("Menyimpan data telegram ...");
     const usnTele = ctx.session.state.userInfo.username;
     const success = await Airtables("databaseTwitter").create([
       {
@@ -51,7 +51,7 @@ const registerTelegram = async (ctx) => {
     ]);
 
     ctx.scene.state = { userId: success[0].id };
-    ctx.editMessageText("Data telegram berhasil disimpan✅");
+    await ctx.editMessageText("Data telegram berhasil disimpan✅");
   } catch (error) {
     console.log(error);
     ctx.reply("error");
@@ -61,7 +61,7 @@ const registerTelegram = async (ctx) => {
 const registerTwitter = async (ctx) => {
   try {
     const usnTwt = ctx.message.text;
-    ctx.reply("Data sedang disimpan....");
+    await ctx.reply("Data sedang disimpan....");
     const update = await Airtables("databaseTwitter").update(
       ctx.scene.state.userId,
       {

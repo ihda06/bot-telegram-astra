@@ -17,12 +17,12 @@ SendScene.action("cancel", ctx=>ctx.scene.enter("welcome"))
 
 SendScene.on("message", async (ctx) => {
   try {
-    ctx.reply("Mengirim tweet ...");
+    await ctx.reply("Mengirim tweet ...");
     const response = await rwClient.v2.tweet(ctx.message.text);
-    ctx.reply(
+    await ctx.reply(
       `Tweet terkirim \n\nLink Tweet : https://twitter.com/CjrFess/status/${response.data.id}`
     );
-    ctx.scene.enter('welcome')
+    await ctx.scene.enter('welcome')
   } catch (error) {
     console.log(error);
     ctx.reply("error");

@@ -22,7 +22,7 @@ tambahTopik.on("message", async (ctx) => {
         },
       },
     ]);
-    ctx.reply("Topik berhasil ditambahkan");
+    await ctx.reply("Topik berhasil ditambahkan");
     ctx.scene.enter("welcome");
   } catch(e) {
     console.error(e)

@@ -20,10 +20,10 @@ TwitterScene.action("mulai", async (ctx) => {
     const data = await Airtables("databaseTwitter")
       .select({ filterByFormula: `username_tele = "${usnTele}"` })
       .all();
-    ctx.reply("Verifikasi data....");
+    await ctx.reply("Verifikasi data....");
     console.log("fetching success");
     if (data.length === 0) {
-      ctx.reply(
+      await ctx.reply(
         "Data anda belum kami simpan, untuk menggunakan bot ini data anda perlu disimpan",
         {
           reply_markup: {
@@ -39,12 +39,12 @@ TwitterScene.action("mulai", async (ctx) => {
       );
     } else {
       if (data[0].fields.verified) {
-        ctx.scene.enter("SendScene");
+        await ctx.scene.enter("SendScene");
       } else {
-        ctx.reply(
+        await ctx.reply(
           "Data anda belum diverifikasi, tunggu admin melakukan verifikasi"
         );
-        ctx.scene.enter("welcome");
+        await ctx.scene.enter("welcome");
       }
     }
   } catch (error) {
