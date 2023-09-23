@@ -8,9 +8,7 @@ const randomizer = (data) => {
 
 const TopikGenerator = async (ctx) => {
   try {
-    console.log("getting message..");
     let rawdata = await Airtables("TopikGenerator").select().all();
-    console.log("message dapet");
     rawdata = transformData(rawdata);
     const topik = randomizer(rawdata);
     await ctx.reply(`Silahkan... \n \n💭\n \n${topik.Topik}`, {

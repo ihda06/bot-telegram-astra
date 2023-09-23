@@ -3,7 +3,7 @@ const rwClient = require("../utils/twitterClient");
 
 const TwitterBot = async (ctx) => {
   try {
-    ctx.scene.enter("TwitterBot");
+    await ctx.scene.enter("TwitterBot");
     const usnTele = ctx.session.state.userInfo.username;
     ctx.reply("Verifikasi data....");
     const data = await Airtables("databaseTwitter")
