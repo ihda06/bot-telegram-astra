@@ -23,14 +23,15 @@ const TwitterBot = async (ctx) => {
           },
         }
       );
+      return false
     } else {
       if (data[0].fields.verified) {
-        ctx.scene.enter("SendScene");
+        return "SendScene"
       } else {
         ctx.reply(
           "Data anda belum diverifikasi, tunggu admin melakukan verifikasi"
         );
-        ctx.scene.enter('welcome')
+        return "welcome"
       }
     }
   } catch (error) {
@@ -40,7 +41,6 @@ const TwitterBot = async (ctx) => {
 
 const registerTelegram = async (ctx) => {
   try {
-
     ctx.editMessageText("Menyimpan data telegram ...");
     const usnTele = ctx.session.state.userInfo.username;
     const success = await Airtables("databaseTwitter").create([
@@ -69,7 +69,9 @@ const registerTwitter = async (ctx) => {
         username_twitter: usnTwt,
       }
     );
-    await ctx.reply("Data berhasil disimpan \n\nData kamu perlu diverifikasi oleh admin terlebih dahulu, coba ulang nanti ya")
+    await ctx.reply(
+      "Data berhasil disimpan \n\nData kamu perlu diverifikasi oleh admin terlebih dahulu, coba ulang nanti ya"
+    );
   } catch (error) {
     console.log(error);
     ctx.reply("error");

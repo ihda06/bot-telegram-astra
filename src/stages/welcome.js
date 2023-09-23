@@ -11,7 +11,7 @@ welcome.enter((ctx) => {
         /* One button */
         [{ text: "💭💭 Topik Generator", callback_data: "TopikGenerator" }],
         [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
-      ]
+      ],
     },
   });
 });
@@ -21,19 +21,15 @@ welcome.command("cancel", (ctx) => {
   ctx.reply("leaving");
 });
 
-welcome.command("topikgenerator", async (ctx) => {
-  await TopikGenerator(ctx);
-  ctx.scene.enter("ResultTopik");
-});
-welcome.command("twitterBot", async (ctx) => {
-  await TwitterBot(ctx);
-});
 welcome.action("TopikGenerator", async (ctx) => {
   await TopikGenerator(ctx);
   ctx.scene.enter("ResultTopik");
 });
 welcome.action("twitterBot", async (ctx) => {
-  await TwitterBot(ctx);
+  const result = await TwitterBot(ctx);
+  if(!!result){
+    ctx.scene.enter(result)
+  }
 });
 welcome.action("register/yes", (ctx) => {
   ctx.scene.enter("twitter/registerScene");
