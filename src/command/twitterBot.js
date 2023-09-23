@@ -25,12 +25,12 @@ const TwitterBot = async (ctx) => {
       );
     } else {
       if (data[0].fields.verified) {
-        ctx.scene.enter("SendScene")
+        ctx.scene.enter("SendScene");
       } else {
         ctx.reply(
           "Data anda belum diverifikasi, tunggu admin melakukan verifikasi"
         );
-        ctx.scene.enter("welcome")
+        ctx.scene.enter("welcome");
       }
     }
   } catch (error) {
@@ -39,8 +39,8 @@ const TwitterBot = async (ctx) => {
 };
 
 const registerTelegram = async (ctx) => {
+  ctx.editMessageText("Menyimpan data telegram ...");
   try {
-    ctx.editMessageText("Menyimpan data telegram ...");
     const usnTele = ctx.session.state.userInfo.username;
     const success = await Airtables("databaseTwitter").create([
       {
