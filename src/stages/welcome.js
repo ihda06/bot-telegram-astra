@@ -10,7 +10,7 @@ welcome.enter((ctx) => {
       inline_keyboard: [
         /* One button */
         [{ text: "💭💭 Topik Generator", callback_data: "TopikGenerator" }],
-        [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
+        // [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
       ],
     },
   });
