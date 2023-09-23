@@ -10,7 +10,7 @@ welcome.enter((ctx) => {
       inline_keyboard: [
         /* One button */
         [{ text: "💭💭 Topik Generator", callback_data: "TopikGenerator" }],
-        [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
+        // [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
       ],
     },
   });
@@ -24,6 +24,14 @@ welcome.command("cancel", (ctx) => {
 welcome.action("TopikGenerator", async (ctx) => {
   await TopikGenerator(ctx);
   ctx.scene.enter("ResultTopik");
+});
+welcome.command("topikgenerator", async (ctx) => {
+  await TopikGenerator(ctx);
+  ctx.scene.enter("ResultTopik");
+});
+welcome.command("twitterbot", async (ctx) => {
+  ctx.reply("coming soon")
+  ctx.scene.enter("welcome")
 });
 welcome.action("twitterBot", (ctx) => {
   ctx.scene.enter("TwitterBot")
