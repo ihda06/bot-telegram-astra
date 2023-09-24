@@ -4,17 +4,6 @@ const { TopikGenerator } = require("../command/topikGenerator");
 const { TwitterBot } = require("../command/twitterBot");
 
 const welcome = new Scene("welcome");
-welcome.enter((ctx) => {
-  ctx.reply(greeting(ctx.session.state.userInfo.first_name), {
-    reply_markup: {
-      inline_keyboard: [
-        /* One button */
-        [{ text: "💭💭 Topik Generator", callback_data: "TopikGenerator" }],
-        [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
-      ],
-    },
-  });
-});
 
 welcome.command("cancel", (ctx) => {
   ctx.scene.leave();
@@ -30,18 +19,30 @@ welcome.command("topikgenerator", async (ctx) => {
   ctx.scene.enter("ResultTopik");
 });
 welcome.command("twitterbot", async (ctx) => {
-  ctx.reply("coming soon")
-  ctx.scene.enter("welcome")
+  ctx.reply("coming soon");
+  ctx.scene.enter("welcome");
 });
-welcome.action("twitterBot", async(ctx) => {
+welcome.action("twitterBot", async (ctx) => {
   await TwitterBot(ctx);
-  ctx.scene.enter("TwitterScene")
+  ctx.scene.enter("TwitterScene");
 });
 welcome.action("register/yes", (ctx) => {
   ctx.scene.enter("twitter/registerScene");
 });
 welcome.action("register/no", (ctx) => {
   ctx.scene.enter("welcome");
+});
+
+welcome.enter((ctx) => {
+  ctx.reply(greeting(ctx.session.state.userInfo.first_name), {
+    reply_markup: {
+      inline_keyboard: [
+        /* One button */
+        [{ text: "💭💭 Topik Generator", callback_data: "TopikGenerator" }],
+        [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
+      ],
+    },
+  });
 });
 
 module.exports = {
