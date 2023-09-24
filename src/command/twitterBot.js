@@ -4,7 +4,7 @@ const rwClient = require("../utils/twitterClient");
 const TwitterBot = async (ctx) => {
   try {
     const usnTele = await ctx.session.state.userInfo.username;
-    await ctx.reply("Verifikasi data....");
+    // await ctx.reply("Verifikasi data....");
     const data = await Airtables("databaseTwitter")
       .select({ filterByFormula: `username_tele = "${usnTele}"` })
       .all();
@@ -39,7 +39,7 @@ const TwitterBot = async (ctx) => {
 };
 
 const registerTelegram = async (ctx) => {
-  ctx.editMessageText("Menyimpan data telegram ...");
+  // ctx.editMessageText("Menyimpan data telegram ...");
   try {
     const usnTele = ctx.session.state.userInfo.username;
     const success = await Airtables("databaseTwitter").create([
@@ -51,7 +51,8 @@ const registerTelegram = async (ctx) => {
     ]);
 
     ctx.scene.state = { userId: success[0].id };
-    ctx.editMessageText("Data telegram berhasil disimpan✅");
+    ctx.reply("Data telegram berhasil disimpan✅");
+    ctx.reply("Data telegram berhasil disimpan✅");
   } catch (error) {
     console.log(error);
     ctx.reply("error");
@@ -61,7 +62,7 @@ const registerTelegram = async (ctx) => {
 const registerTwitter = async (ctx) => {
   try {
     const usnTwt = ctx.message.text;
-    await ctx.reply("Data sedang disimpan....");
+    // await ctx.reply("Data sedang disimpan....");
     const update = await Airtables("databaseTwitter").update(
       ctx.scene.state.userId,
       {
