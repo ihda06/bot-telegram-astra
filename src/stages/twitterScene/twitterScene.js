@@ -30,7 +30,7 @@ TwitterScene.action("mulai", async (ctx) => {
       );
     } else {
       if (data[0].fields.verified) {
-        await ctx.scene.enter("SendScene");
+        ctx.scene.enter("SendScene");
       } else {
         await ctx.reply(
           "Data anda belum diverifikasi, tunggu admin melakukan verifikasi"
