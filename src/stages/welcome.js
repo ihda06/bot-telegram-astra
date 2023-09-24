@@ -33,9 +33,9 @@ welcome.command("twitterbot", async (ctx) => {
   ctx.reply("coming soon")
   ctx.scene.enter("welcome")
 });
-welcome.action("twitterBot", (ctx) => {
+welcome.action("twitterBot", async(ctx) => {
+  await TwitterBot(ctx);
   ctx.scene.enter("TwitterScene")
-  // await TwitterBot(ctx);
 });
 welcome.action("register/yes", (ctx) => {
   ctx.scene.enter("twitter/registerScene");
