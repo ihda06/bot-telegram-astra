@@ -14,7 +14,8 @@ const TwitterRegisterScene = new WizardScene(
     },
     async (ctx) => {
     await register(ctx)
-    await ctx.scene.enter("welcome");
+    ctx.scene.leave()
+    ctx.scene.enter("welcome");
   }
 );
 

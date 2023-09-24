@@ -4,8 +4,8 @@ const { TopikGenerator } = require("../command/topikGenerator");
 const { TwitterBot } = require("../command/twitterBot");
 
 const welcome = new Scene("welcome");
-welcome.enter(async(ctx) => {
-  await ctx.reply(greeting(ctx.session.state.userInfo.first_name), {
+welcome.enter((ctx) => {
+  ctx.reply(greeting(ctx.session.state.userInfo.first_name), {
     reply_markup: {
       inline_keyboard: [
         /* One button */

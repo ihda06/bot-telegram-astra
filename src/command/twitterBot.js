@@ -50,12 +50,12 @@ const register = async (ctx) => {
         },
       },
     ]);
-    await ctx.reply(
+    ctx.reply(
       "Data berhasil disimpan ✅✅ \n\nData kamu perlu diverifikasi oleh admin terlebih dahulu, coba ulang nanti ya"
     );
   } catch (error) {
     console.log(error);
-    ctx.reply("error")
+    ctx.reply("error");
   }
 };
 
@@ -103,4 +103,10 @@ const verifyFolow = async (username) => {
   console.log(datas);
 };
 
-module.exports = { TwitterBot, registerTelegram, registerTwitter, verifyFolow, register };
+module.exports = {
+  TwitterBot,
+  registerTelegram,
+  registerTwitter,
+  verifyFolow,
+  register,
+};
