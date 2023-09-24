@@ -8,22 +8,39 @@ SendScene.action("cancel", (ctx) => {
 });
 
 SendScene.command("tes", (ctx) => {
-  ctx.reply("masuk");
+  ctx.scene.enter("welcome")
 });
 
 SendScene.on("message", async (ctx, next) => {
   try {
     const response = await rwClient.v2.tweet(ctx.message.text);
     ctx.reply(
-      `Tweet terkirim \n\nLink Tweet : https://twitter.com/CjrFess/status/${response.data.id}`
+      `Tweet terkirim \n\nLink Tweet : https://twitter.com/CjrFess/status/${response.data.id}`,
+      {
+        reply_markup: {
+          inline_keyboard: [
+            /* One button */
+            [
+              { text: "Kirim menfess lagi✅", callback_data: "restart" },
+              { text: "Back to menu❌", callback_data: "menu" },
+            ],
+          ],
+        },
+      }
     );
-    await next()
-    ctx.scene.enter("welcome");
   } catch (error) {
     console.log(error);
     ctx.reply("error");
   }
 });
+
+SendScene.action("restart", (ctx)=>{
+  ctx.scene.reenter()
+})
+
+SendScene.action("menu", (ctx)=>{
+  ctx.scene.enter("welcome")
+})
 
 SendScene.enter((ctx) => {
   console.log("send scene", ctx.scene);
