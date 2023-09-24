@@ -3,17 +3,7 @@ const { TwitterBot } = require("../../command/twitterBot");
 const Airtables = require("../../utils/Airtable");
 const TwitterScene = new Scene("TwitterScene");
 
-// TwitterScene.enter(async(ctx) => {
-//   await TwitterBot(ctx)
-//   // ctx.editMessageText("Klik tombol dibawah untuk memulai", {
-//   //   reply_markup: {
-//   //     inline_keyboard: [
-//   //       /* One button */
-//   //       [{ text: "Mulai", callback_data: "mulai" }],
-//   //     ],
-//   //   },
-//   // });
-// });
+
 TwitterScene.action("mulai", async (ctx) => {
   ctx.reply("Verifikasi data....");
   const usnTele = ctx.session.state.userInfo.username;

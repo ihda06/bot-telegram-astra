@@ -27,7 +27,7 @@ const TwitterBot = async (ctx) => {
       if (data[0].fields.verified) {
         ctx.scene.enter("SendScene");
       } else {
-        ctx.reply(
+        await ctx.reply(
           "Data anda belum diverifikasi, tunggu admin melakukan verifikasi"
         );
         ctx.scene.enter("welcome");
