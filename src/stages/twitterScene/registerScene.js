@@ -1,7 +1,5 @@
 const WizardScene = require("telegraf/scenes/wizard");
 const {
-  registerTelegram,
-  registerTwitter,
   register,
 } = require("../../command/twitterBot");
 const TwitterRegisterScene = new WizardScene(
@@ -14,7 +12,12 @@ const TwitterRegisterScene = new WizardScene(
   },
   async (ctx) => {
     await register(ctx);
+    return ctx.scene.leave()
   }
 );
+
+TwitterRegisterScene.leave((ctx)=>{
+  ctx.scene.enter("welcome")
+})
 
 module.exports = TwitterRegisterScene;

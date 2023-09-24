@@ -42,6 +42,9 @@ TwitterScene.action("mulai", async (ctx) => {
     console.log(error);
   }
 });
+TwitterScene.action("menu", (ctx) => {
+  ctx.scene.enter("welcome");
+});
 TwitterScene.action("register/yes", (ctx) => {
   ctx.scene.enter("twitter/registerScene");
 });
