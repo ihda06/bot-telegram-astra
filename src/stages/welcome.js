@@ -10,7 +10,7 @@ welcome.enter((ctx) => {
       inline_keyboard: [
         /* One button */
         [{ text: "💭💭 Topik Generator", callback_data: "TopikGenerator" }],
-        // [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
+        [{ text: "🐦🐦 Bot Twitter", callback_data: "twitterBot" }],
       ],
     },
   });
@@ -34,7 +34,7 @@ welcome.command("twitterbot", async (ctx) => {
   ctx.scene.enter("welcome")
 });
 welcome.action("twitterBot", (ctx) => {
-  ctx.scene.enter("TwitterBot")
+  ctx.scene.enter("TwitterScene")
   // await TwitterBot(ctx);
 });
 welcome.action("register/yes", (ctx) => {

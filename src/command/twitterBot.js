@@ -3,8 +3,8 @@ const rwClient = require("../utils/twitterClient");
 
 const TwitterBot = async (ctx) => {
   try {
-    const usnTele = ctx.session.state.userInfo.username;
-    ctx.reply("Verifikasi data....");
+    const usnTele = await ctx.session.state.userInfo.username;
+    await ctx.reply("Verifikasi data....");
     const data = await Airtables("databaseTwitter")
       .select({ filterByFormula: `username_tele = "${usnTele}"` })
       .all();

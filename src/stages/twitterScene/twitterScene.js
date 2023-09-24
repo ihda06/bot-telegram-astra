@@ -1,17 +1,18 @@
 const Scene = require("telegraf/scenes/base");
 const { TwitterBot } = require("../../command/twitterBot");
 const Airtables = require("../../utils/Airtable");
-const TwitterScene = new Scene("TwitterBot");
+const TwitterScene = new Scene("TwitterScene");
 
-TwitterScene.enter((ctx) => {
-  ctx.editMessageText("Klik tombol dibawah untuk memulai", {
-    reply_markup: {
-      inline_keyboard: [
-        /* One button */
-        [{ text: "Mulai", callback_data: "mulai" }],
-      ],
-    },
-  });
+TwitterScene.enter(async(ctx) => {
+  await TwitterBot(ctx)
+  // ctx.editMessageText("Klik tombol dibawah untuk memulai", {
+  //   reply_markup: {
+  //     inline_keyboard: [
+  //       /* One button */
+  //       [{ text: "Mulai", callback_data: "mulai" }],
+  //     ],
+  //   },
+  // });
 });
 TwitterScene.action("mulai", async (ctx) => {
   ctx.reply("Verifikasi data....");
