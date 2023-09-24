@@ -11,12 +11,13 @@ SendScene.command("tes", (ctx) => {
   ctx.reply("masuk");
 });
 
-SendScene.on("message", async (ctx) => {
+SendScene.on("message", async (ctx, next) => {
   try {
     const response = await rwClient.v2.tweet(ctx.message.text);
-    await ctx.reply(
+    ctx.reply(
       `Tweet terkirim \n\nLink Tweet : https://twitter.com/CjrFess/status/${response.data.id}`
     );
+    await next()
     ctx.scene.enter("welcome");
   } catch (error) {
     console.log(error);
