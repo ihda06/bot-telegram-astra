@@ -50,9 +50,10 @@ const register = async (ctx) => {
         },
       },
     ]);
-    ctx.reply(
+    await ctx.reply(
       "Data berhasil disimpan ✅✅ \n\nData kamu perlu diverifikasi oleh admin terlebih dahulu, coba ulang nanti ya"
     );
+    ctx.scene.enter("welcome")
   } catch (error) {
     console.log(error);
     ctx.reply("error");
