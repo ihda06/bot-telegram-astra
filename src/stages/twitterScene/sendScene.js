@@ -51,7 +51,7 @@ SendScene.action("menu", (ctx) => {
 SendScene.enter((ctx) => {
   console.log("send scene", ctx.scene);
 
-  ctx.reply("Silahkan ketik menfess yang akan dikirim....", {
+  ctx.reply(`Silahkan ketik menfess dengan trigger "Cjr!" .....`, {
     reply_markup: {
       inline_keyboard: [
         /* One button */
