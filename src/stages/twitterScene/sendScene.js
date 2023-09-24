@@ -13,9 +13,8 @@ SendScene.command("tes", (ctx) => {
 
 SendScene.on("message", async (ctx) => {
   try {
-    await ctx.reply("Mengirim tweet ...");
     const response = await rwClient.v2.tweet(ctx.message.text);
-    await ctx.reply(
+    ctx.reply(
       `Tweet terkirim \n\nLink Tweet : https://twitter.com/CjrFess/status/${response.data.id}`
     );
     ctx.scene.enter("welcome");
