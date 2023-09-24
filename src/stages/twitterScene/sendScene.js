@@ -3,8 +3,7 @@ const rwClient = require("../../utils/twitterClient");
 const SendScene = new Scene("SendScene");
 
 SendScene.action("cancel", (ctx) => {
-  console.log("clicked");
-  ctx.reply("masuk");
+  ctx.scene.enter("welcome")
 });
 
 SendScene.command("tes", (ctx) => {
