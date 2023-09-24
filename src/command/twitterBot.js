@@ -38,6 +38,27 @@ const TwitterBot = async (ctx) => {
   }
 };
 
+const register = async (ctx) => {
+  try {
+    const usnTele = ctx.session.state.userInfo.username;
+    const usnTwitter = ctx.message.text;
+    const success = await Airtables("databaseTwitter").create([
+      {
+        fields: {
+          username_tele: usnTele,
+          username_twitter: usnTwitter,
+        },
+      },
+    ]);
+    await ctx.reply(
+      "Data berhasil disimpan ✅✅ \n\nData kamu perlu diverifikasi oleh admin terlebih dahulu, coba ulang nanti ya"
+    );
+  } catch (error) {
+    console.log(error);
+    ctx.reply("error")
+  }
+};
+
 const registerTelegram = async (ctx) => {
   // ctx.editMessageText("Menyimpan data telegram ...");
   try {
@@ -51,7 +72,6 @@ const registerTelegram = async (ctx) => {
     ]);
 
     ctx.scene.state = { userId: success[0].id };
-    ctx.reply("Data telegram berhasil disimpan✅");
     ctx.reply("Data telegram berhasil disimpan✅");
   } catch (error) {
     console.log(error);
@@ -83,4 +103,4 @@ const verifyFolow = async (username) => {
   console.log(datas);
 };
 
-module.exports = { TwitterBot, registerTelegram, registerTwitter, verifyFolow };
+module.exports = { TwitterBot, registerTelegram, registerTwitter, verifyFolow, register };
