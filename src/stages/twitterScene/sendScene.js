@@ -17,7 +17,6 @@ SendScene.on("message", async (ctx, next) => {
       const menfess = ctx.message.text;
       if (menfess.search(/Cjr!/) >= 0) {
         if(menfess.length < 265){
-          ctx.reply("standar")
           const response = await rwClient.v2.tweet(ctx.message.text);
           ctx.reply(
             `Tweet terkirim \n\nLink Tweet : https://twitter.com/CjrFess/status/${response.data.id}`,
