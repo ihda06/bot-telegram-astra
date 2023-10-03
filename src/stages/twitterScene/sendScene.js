@@ -1,6 +1,7 @@
 const Scene = require("telegraf/scenes/base");
 const rwClient = require("../../utils/twitterClient");
 const threadMaker = require("../../utils/threadMaker");
+const { sendTweet } = require("../../services/twitter.services");
 const SendScene = new Scene("SendScene");
 
 SendScene.action("cancel", (ctx) => {
@@ -56,7 +57,9 @@ SendScene.on("message", async (ctx, next) => {
         ctx.reply(`Gunakan trigger menfes ya! \n \n"Cjr!"`);
       }
     } else {
-      ctx.reply("Menfess ini belum bisa mengirim foto, silahkan tulis ulang menfess tanpa foto")
+      ctx.reply("Menfess belum bisa mengirim foto, kirim ulang menfess tanpa foto")
+      // const menfess = ctx.caption;
+      // sendTweet(ctx, menfess)
     }
   } catch (error) {
     console.log(error);
