@@ -1,10 +1,10 @@
 const { logsRequest } = require("./middleware/logs");
 const session = require("telegraf/session");
 const { stage } = require("./stages");
+
 const { Telegraf } = require("telegraf");
 const express = require("express");
-const { verifyFolow } = require("./command/twitterBot");
-const rwClient = require("./utils/twitterClient");
+const { botMenfessStage } = require("./stages/botMenfess/botMenfess");
 require("dotenv").config();
 const expressApp = express();
 
@@ -17,6 +17,7 @@ const bot = new Telegraf(
 bot.use(logsRequest);
 bot.use(session());
 bot.use(stage.middleware());
+bot.use(botMenfessStage.middleware());
 // Register middleware
 bot.start(async (ctx) => {
   ctx.scene.enter("welcome");
@@ -24,9 +25,30 @@ bot.start(async (ctx) => {
     ctx.session.state = { userInfo: ctx.message.from };
   }
 });
+bot.on("message", (ctx, next) => {
+  if (!ctx.message.photo) {
+    const menfess = ctx.message.text;
+    if (menfess.search(/Cjr!/) >= 0) {
+      ctx.scene.enter("input");
+      if (ctx.message) {
+        ctx.session.state = {
+          userInfo: ctx.message.from,
+          menfess: ctx.message.text,
+        };
+      }
+    } else {
+      next();
+    }
+  } else {
+    ctx.reply("Silahkan gunakan web untuk mengirim foto");
+    next();
+  }
+});
 
-bot.on("message", async(ctx) => {
-  ctx.reply("Ketik /start untuk memulai bot");
+bot.on("message", async (ctx) => {
+  ctx.reply(
+    "Ketik /start untuk memulai bot atau gunakan trigger Cjr! untuk mengirim menfess"
+  );
 });
 
 if (process.env.PRODUCTION === "TRUE") {

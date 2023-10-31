@@ -58,8 +58,7 @@ SendScene.on("message", async (ctx, next) => {
       }
     } else {
       ctx.reply("Menfess belum bisa mengirim foto, kirim ulang menfess tanpa foto")
-      // const menfess = ctx.caption;
-      // sendTweet(ctx, menfess)
+
     }
   } catch (error) {
     console.log(error);
