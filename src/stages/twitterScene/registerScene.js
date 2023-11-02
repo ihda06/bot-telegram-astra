@@ -1,7 +1,5 @@
 const WizardScene = require("telegraf/scenes/wizard");
-const {
-  register,
-} = require("../../command/twitterBot");
+const { register } = require("../../command/twitterBot");
 const TwitterRegisterScene = new WizardScene(
   "twitter/registerScene",
   async (ctx) => {
@@ -12,12 +10,8 @@ const TwitterRegisterScene = new WizardScene(
   },
   async (ctx) => {
     await register(ctx);
-    return ctx.scene.leave()
+    return ctx.scene.leave();
   }
 );
-
-TwitterRegisterScene.leave((ctx)=>{
-  ctx.scene.enter("welcome")
-})
 
 module.exports = TwitterRegisterScene;

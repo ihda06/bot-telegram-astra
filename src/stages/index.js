@@ -7,6 +7,7 @@ const { PostUse } = require("./postUse");
 const { TwitterScene } = require("./twitterScene/twitterScene");
 const TwitterRegisterScene = require("./twitterScene/registerScene");
 const { SendScene } = require("./twitterScene/sendScene");
+const { DirectSendScene } = require("./twitterScene/directSendScene");
 
 // Create scene manager
 const stage = new Stage();
@@ -19,7 +20,8 @@ stage.register(
   PostUse,
   TwitterScene,
   TwitterRegisterScene,
-  SendScene
+  SendScene,
+  DirectSendScene
 );
 
 stage.command("reset", (ctx) => {

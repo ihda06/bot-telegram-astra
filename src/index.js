@@ -2,9 +2,9 @@ const { logsRequest } = require("./middleware/logs");
 const session = require("telegraf/session");
 const { stage } = require("./stages");
 const { Telegraf } = require("telegraf");
+
 const express = require("express");
-const { verifyFolow } = require("./command/twitterBot");
-const rwClient = require("./utils/twitterClient");
+const { checkUserName } = require("./utils/Airtable");
 require("dotenv").config();
 const expressApp = express();
 
@@ -25,7 +25,40 @@ bot.start(async (ctx) => {
   }
 });
 
-bot.on("message", async(ctx) => {
+bot.hears(/Cjr!/, async (ctx) => {
+  await ctx.replyWithChatAction("typing");
+  ctx.session.state = { userInfo: ctx.message.from, menfess: ctx.message.text };
+  console.log(ctx.message.from.username);
+  const result = await checkUserName(ctx.message.from.username);
+  switch (result) {
+    case 0:
+      await ctx.scene.enter("twitter/registerScene");
+      break;
+    case 1:
+      await ctx.reply(
+        "Akun anda belum di verifikasi admin, tunggu hingga diverifikasi"
+      );
+      break;
+    case 2:
+      await ctx.scene.enter("DirectSendScene");
+      break;
+  }
+  // await ctx.reply(result);
+});
+
+bot.on("photo", async (ctx) => {
+  const caption = ctx.message.caption;
+  if (caption) {
+    if (caption.search(/Cjr!/) >= 0) {
+      ctx.reply(
+        "Kirim foto melalui https://astra-webapp.vercel.app/twitter-menfess"
+      );
+    }
+  } else {
+    ctx.reply("Ketik /start untuk memulai bot");
+  }
+});
+bot.on("message", async (ctx) => {
   ctx.reply("Ketik /start untuk memulai bot");
 });
 

@@ -1,4 +1,4 @@
-const Airtables = require("../utils/Airtable");
+const { Airtables } = require("../utils/Airtable");
 const rwClient = require("../utils/twitterClient");
 
 const TwitterBot = async (ctx) => {
@@ -51,12 +51,12 @@ const register = async (ctx) => {
         },
       },
     ]);
-    ctx.reply(
+    await ctx.reply(
       "Data berhasil disimpan ✅✅ \n\nData kamu perlu diverifikasi oleh admin terlebih dahulu, coba ulang nanti ya"
     );
   } catch (error) {
     console.log(error);
-    ctx.reply("error");
+    await ctx.reply("error");
   }
 };
 
