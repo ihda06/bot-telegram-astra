@@ -13,6 +13,7 @@ const bot = new Telegraf(
     ? process.env.API_TOKEN
     : process.env.API_TOKEN_DEV
 );
+bot.telegram.webhookReply = false
 
 bot.use(logsRequest);
 bot.use(session());
@@ -63,6 +64,7 @@ bot.on("message", async (ctx) => {
 });
 
 if (process.env.PRODUCTION === "TRUE") {
+ 
   expressApp.use(bot.webhookCallback("/"));
   bot.telegram.setWebhook("https://vast-jade-angelfish-hat.cyclic.cloud");
   expressApp.get("/", (req, res) => {
